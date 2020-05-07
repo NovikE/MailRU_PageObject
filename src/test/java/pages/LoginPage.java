@@ -26,15 +26,20 @@ public class LoginPage extends AbstractPage{
     @FindBy(id = "PH_user-email")
     private WebElement userName;
 
-    public LoginPage(WebDriver driver){super (driver);}
+    public LoginPage(WebDriver driver){
+        super (driver);
+        driver.get(HOMEPAGE_URL);
+        new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
+                .until(ExpectedConditions.visibilityOf(login));
+    }
 
 
-    public LoginPage openPage() {
+    /*public LoginPage openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
                .until(ExpectedConditions.visibilityOf(login));
         return this;
-    }
+    }*/
 
     public LoginPage login(String loginName, String password){
 

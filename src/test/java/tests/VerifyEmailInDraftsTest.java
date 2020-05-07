@@ -2,8 +2,8 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ComposeEmail;
-import pages.DraftsFolder;
+import pages.ComposeEmailDialog;
+import pages.DraftsFolderPage;
 import pages.LoginPage;
 import utils.InputData;
 import utils.Utils;
@@ -17,14 +17,13 @@ public class VerifyEmailInDraftsTest extends BaseTest{
         @Test
         public void createEmailAsDraft(){
         new LoginPage(driver)
-                .openPage()
-                .login(InputData.LOGINNAME.getPersonalData(), InputData.PASSWORD.getPersonalData());
+               .login(InputData.LOGINNAME.getPersonalData(), InputData.PASSWORD.getPersonalData());
 
-        new ComposeEmail(driver).clickCompose()
+        new ComposeEmailDialog(driver).clickCompose()
                 .createNewDraftEmail(sendToAddress, emailSubject, emailBody)
                 .closeEmail();
 
-        DraftsFolder draftsFolder = new DraftsFolder(driver).draftsOpenFolder();
+        DraftsFolderPage draftsFolder = new DraftsFolderPage(driver).draftsOpenFolder();
         draftsFolder.findEmail(emailSubject);
         Assert.assertTrue(draftsFolder.verifyEmails(sendToAddress, emailBody), "Wrong email!");
         draftsFolder.sendEmail();

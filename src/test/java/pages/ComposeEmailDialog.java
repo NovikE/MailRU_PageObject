@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.InputData;
 
 
-public class ComposeEmail extends AbstractPage{
+public class ComposeEmailDialog extends AbstractPage{
 
     private static final String HOMEPAGE_URL = InputData.HOMEPAGE_URL.getPersonalData();
 
@@ -30,24 +30,20 @@ public class ComposeEmail extends AbstractPage{
     @FindBy(xpath = "//*[@title='Закрыть']")
     private WebElement closeEmail;
 
-    public ComposeEmail(WebDriver driver){super (driver);}
-
-    protected AbstractPage openPage() {
-        driver.get(HOMEPAGE_URL);
+    public ComposeEmailDialog(WebDriver driver){
+        super (driver);
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS).
                 until(ExpectedConditions.visibilityOf(composeBtn));
-        return this;
-    }
+       }
 
-    public ComposeEmail clickCompose(){
+    public ComposeEmailDialog clickCompose(){
         composeBtn.click();
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS).
                 until(ExpectedConditions.visibilityOf(sendToInput));
         return this;
     }
 
-    public ComposeEmail createNewDraftEmail(String sendToAddress, String subject, String bodyText){
-
+    public ComposeEmailDialog createNewDraftEmail(String sendToAddress, String subject, String bodyText){
         sendToInput.sendKeys(sendToAddress);
         subjectInput.sendKeys(subject);
         bodyInput.sendKeys(bodyText);

@@ -11,7 +11,7 @@ import utils.Utils;
 
 import java.util.List;
 
-public class DraftsFolder extends AbstractPage{
+public class DraftsFolderPage extends AbstractPage{
 
     private static final String HOMEPAGE_URL = InputData.HOMEPAGE_URL.getPersonalData();
 
@@ -33,16 +33,13 @@ public class DraftsFolder extends AbstractPage{
     @FindBy(xpath = "//*[@title='Закрыть']")
     WebElement closeAlertBtn;
 
-    public DraftsFolder(WebDriver driver){super(driver);}
-
-    protected AbstractPage openPage() {
-        driver.get(HOMEPAGE_URL);
+    public DraftsFolderPage(WebDriver driver){
+        super(driver);
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS).
                 until(ExpectedConditions.visibilityOf(draftsBtn));
-        return this;
     }
 
-    public DraftsFolder draftsOpenFolder(){
+    public DraftsFolderPage draftsOpenFolder(){
         draftsBtn.click();
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
             .until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[contains(@style, 'display: table;')]"))));
@@ -50,7 +47,6 @@ public class DraftsFolder extends AbstractPage{
     }
 
     public boolean findEmail(String emailSubject){
-
         for (WebElement webElement: draftEmails) {
             if(webElement.getText().contains(emailSubject)) {
                 webElement.click();

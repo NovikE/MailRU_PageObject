@@ -10,7 +10,7 @@ import utils.Utils;
 
 import java.util.List;
 
-public class SentEmailsFolder extends AbstractPage {
+public class SentEmailsFolderPage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = InputData.HOMEPAGE_URL.getPersonalData();
 
@@ -23,7 +23,7 @@ public class SentEmailsFolder extends AbstractPage {
     @FindBy(id = "PH_logoutLink")
     private WebElement exitBtn;
 
-    public SentEmailsFolder openSentEmailsFolder() throws InterruptedException {
+    public SentEmailsFolderPage openSentEmailsFolder() throws InterruptedException {
         sentFolderBtn.click();
         Thread.sleep(2000);
         return this;
@@ -35,13 +35,9 @@ public class SentEmailsFolder extends AbstractPage {
 
     public void logout(){exitBtn.click();}
 
-    protected AbstractPage openPage() {
-        driver.get(HOMEPAGE_URL);
+    public SentEmailsFolderPage(WebDriver driver){
+        super(driver);
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS).
-                until(ExpectedConditions.visibilityOf(sentFolderBtn));
-        return this;
-    }
-
-    public SentEmailsFolder(WebDriver driver){super(driver);}
+                until(ExpectedConditions.visibilityOf(sentFolderBtn));}
 
 }
