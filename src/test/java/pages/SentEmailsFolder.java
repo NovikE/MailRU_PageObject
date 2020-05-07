@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,13 +23,8 @@ public class SentEmailsFolder extends AbstractPage {
     @FindBy(id = "PH_logoutLink")
     private WebElement exitBtn;
 
-    @FindBy(xpath = "//div[contains(@style, 'display: table;')]")
-    private WebElement sentTable;
-
     public SentEmailsFolder openSentEmailsFolder() throws InterruptedException {
         sentFolderBtn.click();
-        new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
-                .until(ExpectedConditions.visibilityOf(sentTable));
         Thread.sleep(2000);
         return this;
     }

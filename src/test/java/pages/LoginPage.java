@@ -53,6 +53,4 @@ public class LoginPage extends AbstractPage{
         return userName.getText();
     }
 
-
-
 }

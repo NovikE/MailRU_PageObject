@@ -62,5 +62,4 @@ public class ComposeEmail extends AbstractPage{
 
     }
 
-
 }
