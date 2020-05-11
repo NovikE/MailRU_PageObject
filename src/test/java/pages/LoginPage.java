@@ -7,8 +7,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.HighlitghtingElement;
+import utils.UtilsWithJS;
 import utils.InputData;
+
+import java.io.IOException;
 
 public class LoginPage extends AbstractPage{
 
@@ -55,8 +57,8 @@ public class LoginPage extends AbstractPage{
         return this;
     }
 
-    public String getLoggedUserName() throws InterruptedException{
-        HighlitghtingElement.highlightElement(driver, userName);
+    public String getLoggedUserName() throws IOException {
+        UtilsWithJS.highlightElement(driver, userName);
         return userName.getText();
     }
 
