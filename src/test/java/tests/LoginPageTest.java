@@ -8,7 +8,7 @@ import utils.InputData;
 public class LoginPageTest extends BaseTest{
 
         @Test
-        public void loginUser(){
+        public void loginUser() throws InterruptedException{
             Assert.assertTrue(new LoginPage(driver)
             .login(InputData.LOGINNAME.getPersonalData(),InputData.PASSWORD.getPersonalData())
             .getLoggedUserName().contains(InputData.LOGINNAME.getPersonalData()),"Wrong user login name!");

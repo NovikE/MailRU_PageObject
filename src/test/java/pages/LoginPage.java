@@ -1,10 +1,13 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.HighlitghtingElement;
 import utils.InputData;
 
 public class LoginPage extends AbstractPage{
@@ -33,28 +36,27 @@ public class LoginPage extends AbstractPage{
                 .until(ExpectedConditions.visibilityOf(login));
     }
 
-
-    /*public LoginPage openPage() {
-        driver.get(HOMEPAGE_URL);
-        new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
-               .until(ExpectedConditions.visibilityOf(login));
-        return this;
-    }*/
-
     public LoginPage login(String loginName, String password){
 
-        login.sendKeys(loginName);
-        saveAuthCheckBox.click();
-        addPassBtn.click();
+        new Actions(driver).sendKeys(login, loginName).build().perform();
+       //login.sendKeys(loginName);
+        new Actions(driver).click(saveAuthCheckBox).build().perform();
+       // saveAuthCheckBox.click();
+        JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+        jsExec.executeScript("document.getElementById('mailbox:submit').click()");
+      //addPassBtn.click();
         passwordInput.sendKeys(password);
         addPassBtn.click();
+
+
         new WebDriverWait(driver, WAIT_TIMEOUTS_SECONDS)
                 .until(ExpectedConditions.visibilityOf(userName));
 
         return this;
     }
 
-    public String getLoggedUserName(){
+    public String getLoggedUserName() throws InterruptedException{
+        HighlitghtingElement.highlightElement(driver, userName);
         return userName.getText();
     }
 
