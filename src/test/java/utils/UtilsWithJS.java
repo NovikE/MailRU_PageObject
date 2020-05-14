@@ -21,4 +21,11 @@ public class UtilsWithJS {
         FileUtils.copyFileToDirectory(screenShotFile, new File("src/test/test-output"));
     }
 
+    public static void clickAsJs (WebDriver driver, String id){
+        JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+        jsExec.executeScript("document.getElementById('" + id + "').click()");
+
+    }
+
+
 }

@@ -44,9 +44,8 @@ public class LoginPage extends AbstractPage{
        //login.sendKeys(loginName);
         new Actions(driver).click(saveAuthCheckBox).build().perform();
        // saveAuthCheckBox.click();
-        JavascriptExecutor jsExec = (JavascriptExecutor) driver;
-        jsExec.executeScript("document.getElementById('mailbox:submit').click()");
-      //addPassBtn.click();
+        UtilsWithJS.clickAsJs(driver, "mailbox:submit");
+       //addPassBtn.click();
         passwordInput.sendKeys(password);
         addPassBtn.click();
 
