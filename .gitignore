@@ -2,4 +2,4 @@
 *.log
 /target
 /bin
-/test-output
+test-output/
